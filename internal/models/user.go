@@ -7,26 +7,33 @@ import (
 
 type User struct {
 	gorm.Model
-	Name string
-	Email string
+	Name     string
+	Email    string
 	Password string
 }
 
-type UserService struct {}
+type UserService struct{}
 
 func (us UserService) HashPassword(password string) (string, error) {
 	bytes, err := bcrypt.GenerateFromPassword([]byte(password), 14)
-    return string(bytes), err
+	return string(bytes), err
 }
 
 func (us UserService) CheckPasswordHash(password, hash string) bool {
-    err := bcrypt.CompareHashAndPassword([]byte(hash), []byte(password))
-    return err == nil
+	err := bcrypt.CompareHashAndPassword([]byte(hash), []byte(password))
+	return err == nil
 }
 
-type UserDB struct {}
+type UserDB struct{}
 
-func (ud UserDB) Create(user *User) *User  {
+func (ud UserDB) Create(user *User) *User {
 	db.Create(user)
-	return user	
+	return user
+}
+
+func (ud UserDB) GetByEmail(email string) *User {
+	var user User
+	db.Where("email = ?", email).First(&user)
+
+	return &user
 }
