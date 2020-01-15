@@ -3,6 +3,7 @@ package main
 import (
 	"awesome-blog/cmd"
 	"awesome-blog/internal/models"
+	"awesome-blog/internal/services"
 )
 
 func main() {
@@ -10,5 +11,6 @@ func main() {
 }
 
 func init() {
-	models.InitDB("mysql", "root:password@/demo?charset=utf8&parseTime=True&loc=Local")
+	services.InitConfig()
+	models.InitDB(services.Config.DBName, services.Config.DataSourceName)
 }

@@ -3,6 +3,7 @@ module awesome-blog
 go 1.13
 
 require (
+	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/gorilla/mux v1.7.3
 	github.com/jinzhu/gorm v1.9.11
 	github.com/mitchellh/go-homedir v1.1.0
@@ -17,5 +18,5 @@ require (
 	golang.org/x/sys v0.0.0-20191224085550-c709ea063b76 // indirect
 	golang.org/x/text v0.3.2 // indirect
 	gopkg.in/ini.v1 v1.51.1 // indirect
-	gopkg.in/yaml.v2 v2.2.7 // indirect
+	gopkg.in/yaml.v2 v2.2.7
 )
